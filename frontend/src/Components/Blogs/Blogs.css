@@ -1,0 +1,11 @@
+.card:hover{
+    box-shadow: 8px 8px 8px #00B7FF;
+    transform: scale(1.1);
+}
+.card{
+    margin-left: 30px !important;
+}
+
+.cardColor {
+    background-color: aliceblue;
+}
