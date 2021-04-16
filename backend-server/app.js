@@ -22,9 +22,9 @@ mongoose.connection.on('error', err => {
 
 
 //routes
-const postRoutes = require('./routes/post');
-const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/user');
+const postRoutes = require('./routes/blog_routes');
+const authRoutes = require('./routes/authentication_routes');
+const userRoutes = require('./routes/user_routes');
 
 // apiDocs
 app.get('/api', (req, res) => {
@@ -55,16 +55,8 @@ app.use(function(err, req, res, next) {
 });
 
 
-
-
-
-
-
-
-
-
-
-const port = process.env.PORT || 8080;
+//process.env.PORT ||
+const port =  4002;
 app.listen(port, () => {
     console.log(`A Node Js API is listening on port: ${port}`);
 });
