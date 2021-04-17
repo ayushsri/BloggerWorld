@@ -1,9 +1,9 @@
 const express = require('express');
 const {
-    getPosts,
+    getBlogs,
     createPost,
     postsByUser,
-    postById,
+    blogById,
     isPoster,
     updatePost,
     deletePost,
@@ -17,11 +17,11 @@ const {
 } = require('../controllers/blog_post_fucntions');
 const { require_sign_in } = require('../controllers/blog_authentication');
 const { userById } = require('../controllers/blog_user_Function');
-const { create_post_validator } = require('../validator/blog_validators');
+const { create_post_validator } = require('../validator');
 
 const route = express.Router();
 
-route.get('/posts', getPosts);
+route.get('/posts', getBlogs);
 route.put('/post/like', require_sign_in, like);
 route.put('/post/unlike', require_sign_in, unlike);
 route.put('/post/comment', require_sign_in, comment);
@@ -34,6 +34,6 @@ route.put('/post/:postId', require_sign_in, isPoster, updatePost);
 route.delete('/post/:postId', require_sign_in, isPoster, deletePost);
 route.get('/post/photo/:postId', photo);
 route.param('userId', userById);
-route.param('postId', postById);
+route.param('postId', blogById);
 
 module.exports = route;

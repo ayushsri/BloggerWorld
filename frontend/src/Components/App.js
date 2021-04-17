@@ -1,17 +1,11 @@
-import logo from '../logo.svg';
-import './App.css';
-import HomePage from "./Hompage/HomePage"
-import NavBar from "./Hompage/NavBar";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import ProgrammeRouter from "./ProgrammeRouter";
 
-
-function App() {
-  return (
-    <div className="App">
-        <NavBar/>
-     <HomePage/>
-
-    </div>
-  );
-}
+const App = () => (
+    <BrowserRouter>
+        <ProgrammeRouter />
+    </BrowserRouter>
+);
 
 export default App;

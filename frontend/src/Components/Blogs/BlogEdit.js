@@ -1,8 +1,8 @@
-import BlogDefaultImage from "../../images/Blog_Image.jpg";
-import { exclusiveBlog, blogUpdate } from "./BlogsAPI";
+import BlogDefaultImage from "../../Images/Blog_Image.jpg";
+import { exclusiveBlog, blogUpdate } from "./BlogAPI";
 import { Redirect } from "react-router-dom";
 import React, { Component } from "react";
-import { isAuthenticated } from "../auth";
+import { isAuthenticated } from "../UserAuth";
 
 
 

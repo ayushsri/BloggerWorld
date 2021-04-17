@@ -1,7 +1,7 @@
 const express = require('express');
 const { sign_up, sign_in, sign_out, forgot_Password, reset_Password, social_account_Login } = require('../controllers/blog_authentication');
 
-const { signup_validator, signin_validator, password_reset_validator } = require('../validator/blog_validators');
+const { signup_validator, signin_validator, password_reset_validator } = require('../validator');
 const { userById } = require('../controllers/blog_user_Function');
 
 const route = express.Router();
