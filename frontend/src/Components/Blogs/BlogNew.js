@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { userCreate } from "./BlogsAPI";
-import { isAuthenticated } from "../auth";
+import { userCreate } from "./BlogAPI";
+import { isAuthenticated } from "../UserAuth";
 
 
 class BlogNew extends Component {

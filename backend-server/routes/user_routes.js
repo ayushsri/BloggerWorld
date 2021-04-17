@@ -1,5 +1,6 @@
 const express = require("express");
 const {
+    userById,
     allUsers,
     getUser,
     updateUser,
@@ -23,5 +24,6 @@ route.put("/user/:userId", require_sign_in, hasAuthorization, updateUser);
 route.delete("/user/:userId", require_sign_in, hasAuthorization, deleteUser);
 route.get("/user/photo/:userId", userPhoto);
 route.get("/user/findpeople/:userId", require_sign_in, findPeople);
+route.param("userId", userById);
 
 module.exports = route;

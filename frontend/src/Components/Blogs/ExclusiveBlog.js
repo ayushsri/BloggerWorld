@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { exclusiveBlog, remove, doLike, doUnlike } from './BlogsAPI';
-import DefaultPost from '../../images/Blog_Image.jpg';
+import { exclusiveBlog, remove, doLike, doUnlike } from './BlogAPI';
+import DefaultPost from '../../Images/Blog_Image.jpg';
 import { Link, Redirect } from 'react-router-dom';
-import { isAuthenticated } from '../auth';
+import { isAuthenticated } from '../UserAuth';
 import Comment from '../Comments/Comment';
 
 class ExclusiveBlog extends Component {

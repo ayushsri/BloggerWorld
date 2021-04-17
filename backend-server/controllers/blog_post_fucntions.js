@@ -1,9 +1,9 @@
-const Blog_post_fucntions = require('../models/blog_models');
+const Blog_post_fucntions = require('../models/post');
 const formidable = require('formidable');
 const fs = require('fs');
 const _ = require('lodash');
 
-exports.postById = (req, res, next, id) => {
+exports.blogById = (req, res, next, id) => {
     Blog_post_fucntions.findById(id)
         .populate('postedBy', '_id name')
         .populate('comments.postedBy', '_id name')
@@ -20,7 +20,7 @@ exports.postById = (req, res, next, id) => {
         });
 };
 
-exports.getPosts = async (req, res) => {
+exports.getBlogs = async (req, res) => {
     const currentPage = req.query.page || 1;
     const perPage = 6;
     let totalItems;
