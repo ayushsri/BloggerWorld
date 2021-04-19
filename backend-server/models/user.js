@@ -4,6 +4,7 @@ const { ObjectId } = mongoose.Schema;
 const uuidv1 = require("uuid/v1");
 const Post = require("./post");
 
+// User Fields
 const userSchema = new mongoose.Schema({
     name: {
         type: String,

@@ -1,24 +1,26 @@
 const _ = require('lodash');
-const Blog_user_Function = require('../models/user');
+const Blog_user_function = require('../models/user');
 const formidable = require('formidable');
 const fs = require('fs');
 
-exports.userById = (req, res, next, id) => {
-    Blog_user_Function.findById(id)
+// Finding user by id
+exports.user_By_Id = (req, res, next, id) => {
+    Blog_user_function.findById(id)
         .populate('following', '_id name')
         .populate('followers', '_id name')
         .exec((err, user) => {
             if (err || !user) {
                 return res.status(400).json({
-                    error: 'Blog_user_Function not found'
+                    error: 'Blog_user_function not found'
                 });
             }
-            req.profile = user; 
+            req.profile = user;
             next();
         });
 };
 
-exports.hasAuthorization = (req, res, next) => {
+// Authorization
+exports.has_Authorization = (req, res, next) => {
     let sameUser = req.profile && req.auth && req.profile._id == req.auth._id;
     let adminUser = req.profile && req.auth && req.auth.role === 'admin';
 
@@ -26,14 +28,15 @@ exports.hasAuthorization = (req, res, next) => {
 
     if (!authorized) {
         return res.status(403).json({
-            error: 'Blog_user_Function is not authorized to perform this action'
+            error: 'Blog_user_function is not authorized to perform this action'
         });
     }
     next();
 };
 
-exports.allUsers = (req, res) => {
-    Blog_user_Function.find((err, users) => {
+// All Users
+exports.all_Users = (req, res) => {
+    Blog_user_function.find((err, users) => {
         if (err) {
             return res.status(400).json({
                 error: err
@@ -43,13 +46,15 @@ exports.allUsers = (req, res) => {
     }).select('name email updated created role');
 };
 
-exports.getUser = (req, res) => {
+// Get User
+exports.get_User = (req, res) => {
     req.profile.hashed_password = undefined;
     req.profile.salt = undefined;
     return res.json(req.profile);
 };
 
-exports.updateUser = (req, res, next) => {
+// Update User
+exports.update_User = (req, res, next) => {
     let form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.parse(req, (err, fields, files) => {
@@ -81,7 +86,8 @@ exports.updateUser = (req, res, next) => {
     });
 };
 
-exports.userPhoto = (req, res, next) => {
+// User Photo
+exports.user_Photo = (req, res, next) => {
     if (req.profile.photo.data) {
         res.set(('Content-Type', req.profile.photo.contentType));
         return res.send(req.profile.photo.data);
@@ -89,7 +95,8 @@ exports.userPhoto = (req, res, next) => {
     next();
 };
 
-exports.deleteUser = (req, res, next) => {
+// Delete User
+exports.delete_User = (req, res, next) => {
     let user = req.profile;
     user.remove((err, user) => {
         if (err) {
@@ -97,12 +104,13 @@ exports.deleteUser = (req, res, next) => {
                 error: err
             });
         }
-        res.json({ message: 'Blog_user_Function deleted successfully' });
+        res.json({ message: 'Blog_user_function deleted successfully' });
     });
 };
 
-exports.addFollowing = (req, res, next) => {
-    Blog_user_Function.findByIdAndUpdate(req.body.userId, { $push: { following: req.body.followId } }, (err, result) => {
+// Add Following
+exports.add_Following = (req, res, next) => {
+    Blog_user_function.findByIdAndUpdate(req.body.userId, { $push: { following: req.body.followId } }, (err, result) => {
         if (err) {
             return res.status(400).json({ error: err });
         }
@@ -110,8 +118,9 @@ exports.addFollowing = (req, res, next) => {
     });
 };
 
-exports.addFollower = (req, res) => {
-    Blog_user_Function.findByIdAndUpdate(req.body.followId, { $push: { followers: req.body.userId } }, { new: true })
+// Add Follower
+exports.add_Follower = (req, res) => {
+    Blog_user_function.findByIdAndUpdate(req.body.followId, { $push: { followers: req.body.userId } }, { new: true })
         .populate('following', '_id name')
         .populate('followers', '_id name')
         .exec((err, result) => {
@@ -126,8 +135,9 @@ exports.addFollower = (req, res) => {
         });
 };
 
-exports.removeFollowing = (req, res, next) => {
-    Blog_user_Function.findByIdAndUpdate(req.body.userId, { $pull: { following: req.body.unfollowId } }, (err, result) => {
+// Remove Following
+exports.remove_Following = (req, res, next) => {
+    Blog_user_function.findByIdAndUpdate(req.body.userId, { $pull: { following: req.body.unfollowId } }, (err, result) => {
         if (err) {
             return res.status(400).json({ error: err });
         }
@@ -135,8 +145,10 @@ exports.removeFollowing = (req, res, next) => {
     });
 };
 
-exports.removeFollower = (req, res) => {
-    Blog_user_Function.findByIdAndUpdate(req.body.unfollowId, { $pull: { followers: req.body.userId } }, { new: true })
+
+// Remove Follower
+exports.remove_Follower = (req, res) => {
+    Blog_user_function.findByIdAndUpdate(req.body.unfollowId, { $pull: { followers: req.body.userId } }, { new: true })
         .populate('following', '_id name')
         .populate('followers', '_id name')
         .exec((err, result) => {
@@ -151,10 +163,11 @@ exports.removeFollower = (req, res) => {
         });
 };
 
-exports.findPeople = (req, res) => {
+// Find People
+exports.find_People = (req, res) => {
     let following = req.profile.following;
     following.push(req.profile._id);
-    Blog_user_Function.find({ _id: { $nin: following } }, (err, users) => {
+    Blog_user_function.find({ _id: { $nin: following } }, (err, users) => {
         if (err) {
             return res.status(400).json({
                 error: err

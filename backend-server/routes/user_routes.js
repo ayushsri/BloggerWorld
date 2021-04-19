@@ -1,29 +1,31 @@
+// User routes
+
 const express = require("express");
 const {
-    userById,
-    allUsers,
-    getUser,
-    updateUser,
-    deleteUser,
-    userPhoto,
-    addFollowing,
-    addFollower,
-    removeFollowing,
-    removeFollower,
-    findPeople,
-    hasAuthorization
-} = require("../controllers/blog_user_Function");
-const { require_sign_in } = require("../controllers/blog_authentication");
+    user_By_Id,
+    all_Users,
+    get_User,
+    update_User,
+    delete_User,
+    user_Photo,
+    add_Following,
+    add_Follower,
+    remove_Following,
+    remove_Follower,
+    find_People,
+    has_Authorization
+} = require("../controllers/blog_user_function");
+const { requireSignin } = require("../controllers/blog_authentication");
 
-const route = express.Router();
-route.put("/user/follow", require_sign_in, addFollowing, addFollower);
-route.put("/user/unfollow", require_sign_in, removeFollowing, removeFollower);
-route.get("/users", allUsers);
-route.get("/user/:userId", require_sign_in, getUser);
-route.put("/user/:userId", require_sign_in, hasAuthorization, updateUser);
-route.delete("/user/:userId", require_sign_in, hasAuthorization, deleteUser);
-route.get("/user/photo/:userId", userPhoto);
-route.get("/user/findpeople/:userId", require_sign_in, findPeople);
-route.param("userId", userById);
+const router = express.Router();
+router.put("/user/follow", requireSignin, add_Following, add_Follower);
+router.put("/user/unfollow", requireSignin, remove_Following, remove_Follower);
+router.get("/users", all_Users);
+router.get("/user/:userId", requireSignin, get_User);
+router.put("/user/:userId", requireSignin, has_Authorization, update_User);
+router.delete("/user/:userId", requireSignin, has_Authorization, delete_User);
+router.get("/user/photo/:userId", user_Photo);
+router.get("/user/findpeople/:userId", requireSignin, find_People);
+router.param("userId", user_By_Id);
 
-module.exports = route;
+module.exports = router;
