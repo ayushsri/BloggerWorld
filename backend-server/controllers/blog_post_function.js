@@ -34,7 +34,7 @@ exports.get_Posts = async (req, res) => {
             return Blog_post_function.find()
                 .skip((currentPage - 1) * perPage)
                 .populate('comments', 'text created')
-                .populate('comments.postedBy', '_id name')
+                .populate('comment.postedBy', '_id name')
                 .populate('postedBy', '_id name')
                 .select('_id title body created likes')
                 .limit(perPage)
