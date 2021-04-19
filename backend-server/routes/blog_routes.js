@@ -1,39 +1,41 @@
+// Blog routes
+
 const express = require('express');
 const {
-    getBlogs,
-    createPost,
-    postsByUser,
-    blogById,
+    get_Posts,
+    create_Post,
+    posts_By_User,
+    post_By_Id,
     isPoster,
-    updatePost,
-    deletePost,
+    update_Post,
+    delete_Post,
     photo,
     singlePost,
     like,
     unlike,
     comment,
     uncomment,
-    updateComment
-} = require('../controllers/blog_post_fucntions');
-const { require_sign_in } = require('../controllers/blog_authentication');
-const { userById } = require('../controllers/blog_user_Function');
-const { create_post_validator } = require('../validator');
+    update_Comment
+} = require('../controllers/blog_post_function');
+const { requireSignin } = require('../controllers/blog_authentication');
+const { user_By_Id } = require('../controllers/blog_user_function');
+const { create_Post_Validator } = require('../validator');
 
-const route = express.Router();
+const router = express.Router();
 
-route.get('/posts', getBlogs);
-route.put('/post/like', require_sign_in, like);
-route.put('/post/unlike', require_sign_in, unlike);
-route.put('/post/comment', require_sign_in, comment);
-route.put('/post/uncomment', require_sign_in, uncomment);
-route.put('/post/updatecomment', require_sign_in, updateComment);
-route.post('/post/new/:userId', require_sign_in, createPost, create_post_validator);
-route.get('/posts/by/:userId', require_sign_in, postsByUser);
-route.get('/post/:postId', singlePost);
-route.put('/post/:postId', require_sign_in, isPoster, updatePost);
-route.delete('/post/:postId', require_sign_in, isPoster, deletePost);
-route.get('/post/photo/:postId', photo);
-route.param('userId', userById);
-route.param('postId', blogById);
+router.get('/posts', get_Posts);
+router.put('/post/like', requireSignin, like);
+router.put('/post/unlike', requireSignin, unlike);
+router.put('/post/comment', requireSignin, comment);
+router.put('/post/uncomment', requireSignin, uncomment);
+router.put('/post/updatecomment', requireSignin, update_Comment);
+router.post('/post/new/:userId', requireSignin, create_Post, create_Post_Validator);
+router.get('/posts/by/:userId', requireSignin, posts_By_User);
+router.get('/post/:postId', singlePost);
+router.put('/post/:postId', requireSignin, isPoster, update_Post);
+router.delete('/post/:postId', requireSignin, isPoster, delete_Post);
+router.get('/post/photo/:postId', photo);
+router.param('userId', user_By_Id);
+router.param('postId', post_By_Id);
 
-module.exports = route;
+module.exports = router;

@@ -20,13 +20,12 @@ mongoose.connection.on('error', err => {
     console.log(`DB connection error: ${err.message}`);
 });
 
+// routes
+const post_Routes = require('./routes/blog_routes');
+const auth_Routes = require('./routes/authentication_routes');
+const user_Routes = require('./routes/user_routes');
 
-//routes
-const postRoutes = require('./routes/blog_routes');
-const authRoutes = require('./routes/authentication_routes');
-const userRoutes = require('./routes/user_routes');
-
-// apiDocs
+// Api Docs
 app.get('/api', (req, res) => {
     fs.readFile('docs/apiDocs.json', (err, data) => {
         if (err) {
@@ -39,24 +38,22 @@ app.get('/api', (req, res) => {
     });
 });
 
-// middleware -
+// Middleware
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors());
-app.use('/api', postRoutes);
-app.use('/api', authRoutes);
-app.use('/api', userRoutes);
+app.use('/api', post_Routes);
+app.use('/api', auth_Routes);
+app.use('/api', user_Routes);
 app.use(function(err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
         res.status(401).json({ error: 'Unauthorized!' });
     }
 });
 
-
-//process.env.PORT ||
-const port =  8000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
     console.log(`A Node Js API is listening on port: ${port}`);
 });

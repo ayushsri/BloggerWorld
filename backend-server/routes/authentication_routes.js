@@ -1,17 +1,19 @@
+// Authentication Routes
+
 const express = require('express');
-const { sign_up, sign_in, sign_out, forgot_Password, reset_Password, social_account_Login } = require('../controllers/blog_authentication');
+const { sign_up, sign_in, sign_out, forgot_Password, reset_Password, social_Login } = require('../controllers/blog_authentication');
 
-const { signup_validator, signin_validator, password_reset_validator } = require('../validator');
-const { userById } = require('../controllers/blog_user_Function');
+const { user_Signup_Validator, user_Signin_Validator, password_Reset_Validator } = require('../validator');
+const { user_By_Id } = require('../controllers/blog_user_function');
 
-const route = express.Router();
+const router = express.Router();
 
-route.post('/signup', signup_validator, sign_up);
-route.post('/signin', signin_validator, sign_in);
-route.get('/signout', sign_out);
-route.put('/forgot-password', forgot_Password);
-route.put('/reset-password', password_reset_validator, reset_Password);
-route.post('/social-login', social_account_Login);
-route.param('userId', userById);
+router.post('/signup', user_Signup_Validator, sign_up);
+router.post('/signin', user_Signin_Validator, sign_in);
+router.get('/signout', sign_out);
+router.put('/forgot-password', forgot_Password);
+router.put('/reset-password', password_Reset_Validator, reset_Password);
+router.post('/social-login', social_Login);
+router.param('userId', user_By_Id);
 
-module.exports = route;
+module.exports = router;
