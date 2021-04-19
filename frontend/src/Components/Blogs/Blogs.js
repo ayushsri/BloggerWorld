@@ -38,6 +38,83 @@ class Blogs extends Component {
     };
 
 
+    maxLikesOfBlogs=blogs=>{
+        let max=0;
+        let blogid;
+        blogs.map((post, i) => {
+            console.log(max)
+            const bloglikes = post.likes
+                ? post.likes.length
+                : " Unknown";
+            console.log(bloglikes)
+            if(max<=bloglikes)
+            {
+                max=bloglikes;
+                blogid=post._id;
+                console.log(post._id)
+            }
+        })
+        console.log(blogid)
+        return blogid;
+
+
+
+    }
+
+
+    renderTrendingBlogs=  blogs => {
+        return (
+            <div className="row">
+                {blogs.map((post, i) => {
+                    const blogerId = post.postedBy
+                        ? `/user/${post.postedBy._id}`
+                        : "";
+                    const bloggerName = post.postedBy
+                        ? post.postedBy.name
+                        : " Unknown";
+                    if(post._id==this.maxLikesOfBlogs(blogs))
+                    { return (
+                        <div className="card col-md-6 mt-4 cardColor borderCard offset-md-2 row "  key={i}>
+
+                            <div className="card-body bg-image hover-zoom  mx-auto">
+                                <img
+                                    src={`${
+                                        process.env.REACT_APP_BLOGGER_WORLD_URL
+                                    }/post/photo/${post._id}`}
+                                    alt={post.title}
+                                    onError={i =>
+                                        (i.target.src = `${DefaultPost}`)
+                                    }
+                                    className="rounded mx-auto d-block mb-3"
+                                    style={{ height: "199px", width: "99%" }}
+                                />
+                                <h5 className="card-title">{post.title}</h5>
+                                <br />
+                                <p className="font-italic mark font-info ">
+                                    Blogged by:{" "}
+                                    <Link to={`${blogerId}`}  style={{ color:"blue" }}>
+
+                                        {bloggerName}{" "}
+                                    </Link>
+                                    on {new Date(post.created).toDateString()}
+                                </p>
+                                <Link
+                                    to={`/post/${post._id}`}
+                                    className="btn btn-raised  btn-info btn-sm borderCard1 "
+                                >
+                                    Explore Blog
+                                </Link>
+
+                            </div>
+                        </div>
+                    );}
+                })}
+            </div>
+        );
+    };
+
+
+
 
     renderBlogs = blogs => {
         return (
@@ -92,6 +169,14 @@ class Blogs extends Component {
     render() {
         const { posts, page } = this.state;
         return (
+            <div>
+                <div className="container center">
+                    <h2 className="mt-5 mb-5 font-italic center" ><u>
+                        {!posts.length ? "No Trending Blog!" : "The Trending Blog"}
+                    </u>
+                    </h2>
+                    {this.renderTrendingBlogs(posts)}
+                </div>
             <div className="container">
                 <h2 className="mt-5 mb-5 font-italic"><u>
                     {!posts.length ? "No more Blogs!" : "Newest Blogs"}
@@ -121,6 +206,7 @@ class Blogs extends Component {
                 ) : (
                     ""
                 )}
+            </div>
             </div>
         );
     }
