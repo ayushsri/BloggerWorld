@@ -11,7 +11,7 @@ import BlogNew from "./Blogs/BlogNew";
 import BlogEdit from "./Blogs/BlogEdit";
 import ExclusiveBlog from "./Blogs/ExclusiveBlog";
 import PrivateRoute from "./UserAuth/PrivateRoute";
-import ForgotPassword from "./User/ForgotPassword";
+//import ForgotPassword from "./User/ForgotPassword";
 import ResetPassword from "./User/ResetPassword";
 import { Route, Switch } from "react-router-dom";
 
@@ -20,7 +20,7 @@ const ProgrammeRouter = () => (
         <Menu />
         <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/forgot-password" component={ForgotPassword} />
+            {/*<Route exact path="/forgot-password" component={ForgotPassword} />*/}
             <Route
                 exact
                 path="/reset-password/:resetPasswordToken"

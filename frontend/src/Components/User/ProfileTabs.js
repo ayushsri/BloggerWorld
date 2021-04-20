@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import InitialUserPic from "../../Images/profile_pic.jpeg";
-
+import "./user.css"
 class ProfileTabs extends Component {
     render() {
         const { following, followers, posts } = this.props;
@@ -81,7 +81,7 @@ class ProfileTabs extends Component {
                     </div>
 
                     <div className="col-md-4">
-                        <h3 className="text-primary">{posts.length} Posts</h3>
+                        <h3 className="text-primary">{posts.length} Blogs</h3>
                         <hr />
                         {posts.map((post, i) => (
                             <div key={i}>

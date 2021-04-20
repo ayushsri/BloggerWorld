@@ -163,13 +163,13 @@ class Signin extends Component {
                 {this.signinForm(email, password, recaptcha)}
 
                 <p>
-                    <Link
-                        to="/forgot-password"
-                        className="btn btn-raised btn-danger"
-                    >
-                        {" "}
-                        Forgot Password
-                    </Link>
+                    {/*<Link*/}
+                    {/*    to="/forgot-password"*/}
+                    {/*    className="btn btn-raised btn-danger"*/}
+                    {/*>*/}
+                    {/*    {" "}*/}
+                    {/*    Forgot Password*/}
+                    {/*</Link>*/}
                 </p>
             </div>
         );

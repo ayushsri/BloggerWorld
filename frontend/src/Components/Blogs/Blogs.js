@@ -170,8 +170,8 @@ class Blogs extends Component {
         const { posts, page } = this.state;
         return (
             <div>
-                <div className="container center">
-                    <h2 className="mt-5 mb-5 font-italic center" ><u>
+                <div className="container card2">
+                    <h2 className="mt-5 mb-5 font-italic card3 " ><u>
                         {!posts.length ? "No Trending Blog!" : "The Trending Blog"}
                     </u>
                     </h2>
@@ -210,9 +210,6 @@ class Blogs extends Component {
             </div>
         );
     }
-
-
-
 
 }
 
