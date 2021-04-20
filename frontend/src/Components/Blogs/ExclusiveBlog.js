@@ -4,7 +4,7 @@ import DefaultPost from '../../Images/Blog_Image.jpg';
 import { Link, Redirect } from 'react-router-dom';
 import { isAuthenticated } from '../UserAuth';
 import Comment from '../Comments/Comment';
-import "./Blogs.scss"
+import "./Blogs.css"
 
 class ExclusiveBlog extends Component {
     state = {
