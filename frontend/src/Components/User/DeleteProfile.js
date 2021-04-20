@@ -1,3 +1,4 @@
+import './user.css'
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { isAuthenticated } from "../UserAuth";
@@ -40,7 +41,7 @@ class DeleteProfile extends Component {
         return (
             <button
                 onClick={this.confirmDelete}
-                className="btn btn-raised btn-danger"
+                className="btn btn-raised btn-danger borderCard1"
             >
                 Delete Profile
             </button>

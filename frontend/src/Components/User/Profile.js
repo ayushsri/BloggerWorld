@@ -1,3 +1,4 @@
+import "./user.css"
 import React, { Component } from "react";
 import { isAuthenticated } from "../UserAuth";
 import { Redirect, Link } from "react-router-dom";
@@ -7,6 +8,7 @@ import DeleteProfile from "./DeleteProfile";
 import FollowProfileButton from "./FollowProfileButton";
 import ProfileTabs from "./ProfileTabs";
 import { listByUser } from "../Blogs/BlogAPI";
+import Users from "./Users";
 
 class Profile extends Component {
   constructor() {
@@ -111,14 +113,14 @@ class Profile extends Component {
             isAuthenticated().user._id === user._id ? (
               <div className="d-inline-block">
                 <Link
-                  className="btn btn-raised btn-info mr-5"
+                  className="btn btn-raised btn-info mr-5 borderCard1"
                   to={`/post/create`}
                 >
-                  Create Post
+                  Write Blogs
                 </Link>
 
                 <Link
-                  className="btn btn-raised btn-success mr-5"
+                  className="btn btn-raised btn-success mr-5 borderCard1"
                   to={`/user/edit/${user._id}`}
                 >
                   Edit Profile

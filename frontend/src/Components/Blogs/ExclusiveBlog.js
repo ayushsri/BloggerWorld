@@ -4,6 +4,7 @@ import DefaultPost from '../../Images/Blog_Image.jpg';
 import { Link, Redirect } from 'react-router-dom';
 import { isAuthenticated } from '../UserAuth';
 import Comment from '../Comments/Comment';
+import "./Blogs.css"
 
 class ExclusiveBlog extends Component {
     state = {
@@ -129,7 +130,7 @@ class ExclusiveBlog extends Component {
                     on {new Date(post.created).toDateString()}
                 </p>
                 <div className="d-inline-block">
-                    <Link to={`/`} className="btn btn-raised btn-info btn-sm mr-5">
+                    <Link to={`/`} className="btn btn-raised btn-info btn-sm mr-5 borderCard1">
                         Return to Blogs
                     </Link>
 

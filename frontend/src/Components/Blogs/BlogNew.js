@@ -21,7 +21,7 @@ class BlogNew extends Component {
     blogNewForm = (title, body) => (
         <form>
             <div className="form-group">
-                <label className="text-muted">Post Photo</label>
+                <label className="text-muted">Attach a pic</label>
                 <input
                     onChange={this.onChange("photo")}
                     type="file"
@@ -40,7 +40,7 @@ class BlogNew extends Component {
             </div>
 
             <div className="form-group">
-                <label className="text-muted">Body</label>
+                <label className="text-muted">Blog body</label>
                 <textarea
                     onChange={this.onChange("body")}
                     type="text"
@@ -51,9 +51,9 @@ class BlogNew extends Component {
 
             <button
                 onClick={this.onSubClick}
-                className="btn btn-raised btn-info"
+                className="btn btn-raised btn-info borderCard1"
             >
-                Create Post
+                Create the Blog
             </button>
         </form>
     );
@@ -74,7 +74,7 @@ class BlogNew extends Component {
 
         return (
             <div className="container">
-                <h2 className="mt-5 mb-5">Create a new post</h2>
+                <h2 className="mt-5 mb-5">Write a new blog</h2>
                 <div
                     className="alert alert-danger"
                     style={{ display: error ? "" : "none" }}

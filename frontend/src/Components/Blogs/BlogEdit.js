@@ -109,7 +109,7 @@ class BlogEdit extends Component {
             </div>
 
             <div className="form-group">
-                <label className="text-muted">Body</label>
+                <label className="text-muted">Blog body</label>
                 <textarea
                     onChange={this.handleChange("body")}
                     type="text"

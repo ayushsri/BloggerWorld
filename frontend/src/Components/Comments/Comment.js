@@ -93,7 +93,7 @@ class Comment extends Component {
                             className="form-control"
                             placeholder="Leave a comment..."
                         />
-                        <button className="btn btn-raised btn-secondary mt-2">
+                        <button className="btn btn-raised btn-secondary mt-2 borderCard1">
                             Add Comment
                         </button>
                     </div>
