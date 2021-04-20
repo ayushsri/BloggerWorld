@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import InitialUserPic from "../../Images/profile_pic.jpeg";
-import "./user.css"
+import "./user.scss"
 class ProfileTabs extends Component {
     render() {
         const { following, followers, posts } = this.props;
