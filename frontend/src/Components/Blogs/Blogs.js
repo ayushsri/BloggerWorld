@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { blogList } from "./BlogAPI";
 import DefaultPost from "../../Images/Blog_Image.jpg";
 import { Link } from "react-router-dom";
-import "./Blogs.scss"
+import "./Blogs.css"
 
 class Blogs extends Component {
     constructor() {

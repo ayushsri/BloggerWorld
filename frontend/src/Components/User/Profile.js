@@ -1,4 +1,4 @@
-import "./user.scss"
+import "./user.css"
 import React, { Component } from "react";
 import { isAuthenticated } from "../UserAuth";
 import { Redirect, Link } from "react-router-dom";

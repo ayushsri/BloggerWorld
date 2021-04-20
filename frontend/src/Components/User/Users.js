@@ -3,7 +3,7 @@ import { list } from "./blogUserApi";
 import { Link } from "react-router-dom";
 import React, { Component } from "react";
 import {isAuthenticated} from "../UserAuth";
-import "./user.scss"
+import "./user.css"
 
 class Users extends Component {
 
