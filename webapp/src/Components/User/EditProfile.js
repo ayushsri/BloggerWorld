@@ -4,6 +4,7 @@ import { read, update, updateUser } from "./blogUserApi";
 import { Redirect } from "react-router-dom";
 import DefaultProfile from "../../Images/profile_pic.jpeg";
 
+//class to delete a user
 class EditProfile extends Component {
   constructor() {
     super();
@@ -19,7 +20,7 @@ class EditProfile extends Component {
       about: ""
     };
   }
-
+// intiated to set State
   init = userId => {
     const token = isAuthenticated().token;
     read(userId, token).then(data => {
@@ -36,13 +37,13 @@ class EditProfile extends Component {
       }
     });
   };
-
+//rendering intially
   componentDidMount() {
     this.userData = new FormData();
     const userId = this.props.match.params.userId;
     this.init(userId);
   }
-
+//check if it is valid or not
   isValid = () => {
     const { name, email, password, fileSize } = this.state;
     if (fileSize > 1000000) {
