@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import { userCreate } from "./BlogAPI";
 import { isAuthenticated } from "../UserAuth";
 
-
+//blogNew is the class to adding new Blog
 class BlogNew extends Component {
     constructor() {
         super();
@@ -18,6 +18,7 @@ class BlogNew extends Component {
             error: ""
         };
     }
+    //function on getting title body and then converting in form
     blogNewForm = (title, body) => (
         <form>
             <div className="form-group">
@@ -94,7 +95,7 @@ class BlogNew extends Component {
             </div>
         );
     }
-
+//on change event
     onChange = name => event => {
         this.setState({ error: "" });
         const value =
@@ -105,7 +106,7 @@ class BlogNew extends Component {
         this.setState({ [name]: value, fileSize });
     };
 
-
+//first checking if you are signed in
     onSubClick = event => {
         event.preventDefault();
         this.setState({ loading: true });
@@ -127,7 +128,7 @@ class BlogNew extends Component {
             });
         }
     };
-
+//checking if input body, title and pic is right
     isValid = () => {
         const { title, body, fileSize } = this.state;
         if (fileSize > 100000) {
@@ -145,12 +146,12 @@ class BlogNew extends Component {
     };
 
 
-
+//Executing this after the first render
     componentDidMount() {
         this.postData = new FormData();
         this.setState({ user: isAuthenticated().user });
     }
 }
-
+//exporting new blog
 export default BlogNew;
 

@@ -6,6 +6,7 @@ import { isAuthenticated } from '../UserAuth';
 import Comment from '../Comments/Comment';
 import "./Blogs.scss"
 
+//class for single Blog
 class ExclusiveBlog extends Component {
     state = {
         post: '',
@@ -15,13 +16,13 @@ class ExclusiveBlog extends Component {
         likes: 0,
         comments: []
     };
-
+//which user is doing the like
     checkLike = likes => {
         const userId = isAuthenticated() && isAuthenticated().user._id;
         let match = likes.indexOf(userId) !== -1;
         return match;
     };
-
+//rendering intially
     componentDidMount = () => {
         const postId = this.props.match.params.postId;
         exclusiveBlog(postId).then(data => {
@@ -37,11 +38,11 @@ class ExclusiveBlog extends Component {
             }
         });
     };
-
+//on updating comments
     updateComments = comments => {
         this.setState({ comments });
     };
-
+// chekcing if it is like or unlike and updating accordingly
     likeToggle = () => {
         if (!isAuthenticated()) {
             this.setState({ redirectToSignin: true });
@@ -64,7 +65,7 @@ class ExclusiveBlog extends Component {
         });
     };
 
-
+//delete a blog
     deletePost = () => {
         const postId = this.props.match.params.postId;
         const token = isAuthenticated().token;
@@ -76,7 +77,7 @@ class ExclusiveBlog extends Component {
             }
         });
     };
-
+//Asking if you really want to delete
     deleteConfirmed = () => {
         let answer = window.confirm('Are you sure you want to delete your post?');
         if (answer) {
@@ -168,6 +169,7 @@ class ExclusiveBlog extends Component {
             </div>
         );
     };
+//rendering the single blog
     render() {
         const { post, redirectToHome, redirectToSignin, comments } = this.state;
 

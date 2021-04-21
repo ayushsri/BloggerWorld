@@ -1,3 +1,4 @@
+//api for user signup
 export const userSignUp = user => {
     return fetch(`${process.env.REACT_APP_BLOGGER_WORLD_URL}/signup`, {
         method: 'POST',
@@ -12,7 +13,7 @@ export const userSignUp = user => {
         })
         .catch(err => console.log(err));
 };
-
+//api for user signin
 export const userSignIn = user => {
     return fetch(`${process.env.REACT_APP_BLOGGER_WORLD_URL}/signin`, {
         method: 'POST',
@@ -27,21 +28,21 @@ export const userSignIn = user => {
         })
         .catch(err => console.log(err));
 };
-
+//api for user authenticating
 export const authenticate = (jwt, next) => {
     if (typeof window !== 'undefined') {
         localStorage.setItem('jwt', JSON.stringify(jwt));
         next();
     }
 };
-
+//api for setting username
 export const setUserName = (name, next) => {
     if (typeof window !== 'undefined') {
         localStorage.setItem('username', JSON.stringify(name));
         next();
     }
 };
-
+//api for signout
 export const  signOut = next => {
     if (typeof window !== 'undefined') localStorage.removeItem('jwt');
     next();
@@ -54,7 +55,7 @@ export const  signOut = next => {
         })
         .catch(err => console.log(err));
 };
-
+//api to check is user is autherntic
 export const isAuthenticated = () => {
     if (typeof window == 'undefined') {
         return false;
@@ -83,7 +84,7 @@ export const forgotPassword = email => {
         })
         .catch(err => console.log(err));
 };
-
+//Api to reset password
 export const resetPassword = resetInfo => {
     return fetch(`${process.env.REACT_APP_BLOGGER_WORLD_URL}/reset-password/`, {
         method: 'PUT',

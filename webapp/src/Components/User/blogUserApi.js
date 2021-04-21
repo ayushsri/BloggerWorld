@@ -1,3 +1,4 @@
+//get user according to id
 export const read = (userId, token) => {
     return fetch(`${process.env.REACT_APP_BLOGGER_WORLD_URL}/user/${userId}`, {
         method: "GET",
@@ -12,7 +13,7 @@ export const read = (userId, token) => {
         })
         .catch(err => console.log(err));
 };
-
+//get user if he is authenticate to do that
 export const update = (userId, token, user) => {
     console.log("USER DATA UPDATE: ", user);
     return fetch(`${process.env.REACT_APP_BLOGGER_WORLD_URL}/user/${userId}`, {
@@ -28,7 +29,7 @@ export const update = (userId, token, user) => {
         })
         .catch(err => console.log(err));
 };
-
+//remove a user
 export const remove = (userId, token) => {
     return fetch(`${process.env.REACT_APP_BLOGGER_WORLD_URL}/user/${userId}`, {
         method: "DELETE",
@@ -64,7 +65,7 @@ export const updateUser = (user, next) => {
         }
     }
 };
-
+//follow a user
 export const follow = (userId, token, followId) => {
     return fetch(`${process.env.REACT_APP_BLOGGER_WORLD_URL}/user/follow`, {
         method: "PUT",
@@ -78,9 +79,9 @@ export const follow = (userId, token, followId) => {
         .then(response => {
             return response.json();
         })
-        .catch(err => console.log(err));                  //FOLLOW
+        .catch(err => console.log(err));                  
 };
-
+//unfollow a user
 export const unfollow = (userId, token, unfollowId) => {
     return fetch(`${process.env.REACT_APP_BLOGGER_WORLD_URL}/user/unfollow`, {
         method: "PUT",
@@ -96,6 +97,7 @@ export const unfollow = (userId, token, unfollowId) => {
         })
         .catch(err => console.log(err));
 };
+//find a user by id
 export const findPeople = (userId, token) => {
     return fetch(`${process.env.REACT_APP_BLOGGER_WORLD_URL}/user/findpeople/${userId}`, {
         method: "GET",

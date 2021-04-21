@@ -4,17 +4,18 @@ import { isAuthenticated } from "../UserAuth";
 import { Link } from "react-router-dom";
 import DefaultProfile from "../../Images/profile_pic.jpeg";
 
+//comment class
 class Comment extends Component {
     state = {
         text: "",
         error: ""
     };
-
+//setting stage on event change
     handleChange = event => {
         this.setState({ error: "" });
         this.setState({ text: event.target.value });
     };
-
+//is this a valid comment
     isValid = () => {
         const { text } = this.state;
         if (!text.length > 0 || text.length > 150) {
@@ -26,7 +27,7 @@ class Comment extends Component {
         }
         return true;
     };
-
+//on submit this function is called
     addComment = e => {
         e.preventDefault();
 
@@ -52,7 +53,7 @@ class Comment extends Component {
             );
         }
     };
-
+//on delete this functionality is used
     deleteComment = comment => {
         const userId = isAuthenticated().user._id;
         const token = isAuthenticated().token;
@@ -66,7 +67,7 @@ class Comment extends Component {
             }
         });
     };
-
+//Delete confirmed
     deleteConfirmed = comment => {
         let answer = window.confirm(
             "Are you sure you want to delete your comment?"
@@ -75,7 +76,7 @@ class Comment extends Component {
             this.deleteComment(comment);
         }
     };
-
+//rendering the ui
     render() {
         const { comments } = this.props;
         const { error } = this.state;
@@ -171,5 +172,5 @@ class Comment extends Component {
         );
     }
 }
-
+// exportig comment class
 export default Comment;

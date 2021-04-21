@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import { isAuthenticated } from "../UserAuth";
 
 
-
+//Class to edit the Blog
 class BlogEdit extends Component {
     constructor() {
         super();
@@ -19,7 +19,7 @@ class BlogEdit extends Component {
             loading: false
         };
     }
-
+//check if the edit blog is valid
     isValid = () => {
         const { title, body, fileSize } = this.state;
         if (fileSize > 1000000) {
@@ -29,18 +29,20 @@ class BlogEdit extends Component {
             });
             return false;
         }
+        //fields cant be empty
         if (title.length === 0 || body.length === 0) {
             this.setState({ error: "All fields are required", loading: false });
             return false;
         }
         return true;
     };
+//Executing this after the first render
     componentDidMount() {
         this.postData = new FormData();
         const postId = this.props.match.params.postId;
         this.init(postId);
     }
-
+//event to handle the changes
     handleChange = name => event => {
         this.setState({ error: "" });
         const value =
@@ -50,7 +52,7 @@ class BlogEdit extends Component {
         this.postData.set(name, value);
         this.setState({ [name]: value, fileSize });
     };
-
+//initial state executed by first render
     init = postId => {
         exclusiveBlog(postId).then(data => {
             if (data.error) {
@@ -65,7 +67,7 @@ class BlogEdit extends Component {
             }
         });
     };
-
+//event on clicking Submit
     onClickSubmit = event => {
         event.preventDefault();
         this.setState({ loading: true });
@@ -87,6 +89,7 @@ class BlogEdit extends Component {
             });
         }
     };
+//edit Blog form
     editBlogForm = (title, body) => (
         <form>
             <div className="form-group">
@@ -126,6 +129,7 @@ class BlogEdit extends Component {
             </button>
         </form>
     );
+ //render all changes
     render() {
         const {
             id,
@@ -135,7 +139,7 @@ class BlogEdit extends Component {
             error,
             loading
         } = this.state;
-
+//checking if it is valid profile to edit
         if (redirectToProfile) {
             return <Redirect to={`/user/${isAuthenticated().user._id}`} />;
         }
@@ -178,5 +182,5 @@ class BlogEdit extends Component {
         );
     }
 }
-
+//exporting the blogEdit
 export default BlogEdit;
