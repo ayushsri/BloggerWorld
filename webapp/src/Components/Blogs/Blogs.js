@@ -3,7 +3,7 @@ import { blogList } from "./BlogAPI";
 import DefaultPost from "../../Images/Blog_Image.jpg";
 import { Link } from "react-router-dom";
 import "./Blogs.scss"
-
+// this is the main class of Blogs
 class Blogs extends Component {
     constructor() {
         super();
@@ -21,12 +21,13 @@ class Blogs extends Component {
         this.setState({ page: this.state.page + number });
         this.loadBlogs(this.state.page + number);
     };
+//setting initial page state
     componentDidMount() {
         this.loadBlogs(this.state.page);
     }
 
 
-
+//initial rendering what ever is present on the page
      loadBlogs = page => {
         blogList(page).then(data => {
             if (data.error) {
@@ -37,7 +38,7 @@ class Blogs extends Component {
         });
     };
 
-
+//function to get the maximum number of likes
     maxLikesOfBlogs=blogs=>{
         let max=0;
         let blogid;
@@ -61,7 +62,7 @@ class Blogs extends Component {
 
     }
 
-
+//to output the trending blogs
     renderTrendingBlogs=  blogs => {
         return (
             <div className="row">
@@ -115,7 +116,7 @@ class Blogs extends Component {
 
 
 
-
+//output blogs
     renderBlogs = blogs => {
         return (
             <div className="row">
@@ -166,6 +167,7 @@ class Blogs extends Component {
             </div>
         );
     };
+ //this is what is return on export
     render() {
         const { posts, page } = this.state;
         return (
@@ -212,5 +214,5 @@ class Blogs extends Component {
     }
 
 }
-
+//exporting Blogs
 export default Blogs;
