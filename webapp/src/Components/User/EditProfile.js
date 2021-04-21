@@ -57,7 +57,7 @@ class EditProfile extends Component {
       this.setState({ error: "Name is required", loading: false });
       return false;
     }
-    // email@domain.com
+  
     if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       this.setState({
         error: "A valid Email is required",
@@ -164,8 +164,8 @@ class EditProfile extends Component {
       </button>
     </form>
   );
-
-  render() {                    //RENDER
+//render the output
+  render() {                   
     const {
       id,
       name,
