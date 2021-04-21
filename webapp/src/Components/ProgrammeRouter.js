@@ -14,11 +14,13 @@ import PrivateRoute from "./UserAuth/PrivateRoute";
 //import ForgotPassword from "./User/ForgotPassword";
 import ResetPassword from "./User/ResetPassword";
 import { Route, Switch } from "react-router-dom";
-
+//progrmme router is use to route through different componenets
 const ProgrammeRouter = () => (
     <div>
+    //include nav bar in every page
         <Menu />
         <Switch>
+   //route to different path according to different path
             <Route exact path="/" component={Home} />
             {/*<Route exact path="/forgot-password" component={ForgotPassword} />*/}
             <Route
@@ -26,6 +28,7 @@ const ProgrammeRouter = () => (
                 path="/reset-password/:resetPasswordToken"
                 component={ResetPassword}
             />
+    //use of private Router on authenticating
             <PrivateRoute exact path="/post/create" component={BlogNew} />
             <Route exact path="/post/:postId" component={ExclusiveBlog} />
             <PrivateRoute
